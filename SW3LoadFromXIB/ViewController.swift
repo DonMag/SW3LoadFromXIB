@@ -22,14 +22,24 @@ class ViewController: UIViewController {
 
 
 	@IBAction func btnTapped(_ sender: Any) {
-		print("tapped")
 		
-		let lfxV = LFXView(frame: CGRect(x: 40, y: 200, width: 200, height: 150))
+		let lfxV = LFXView()
 		
-		lfxV.lfxSetLabelText(theString: "Hello LFX")
-		lfxV.theLabel.textColor = UIColor.orange
+		lfxV.translatesAutoresizingMaskIntoConstraints = false
+		
+		lfxV.theText = "Hello LFX"
+		lfxV.theLabel.textColor = UIColor.red
 		
 		self.view.addSubview(lfxV)
+
+		if let btn = sender as? UIButton {
+			
+			lfxV.widthAnchor.constraint(equalToConstant: 240).isActive = true
+			lfxV.heightAnchor.constraint(equalToConstant: 150).isActive = true
+			lfxV.topAnchor.constraint(equalTo: btn.bottomAnchor, constant: 24).isActive = true
+			lfxV.centerXAnchor.constraint(equalTo: btn.centerXAnchor).isActive = true
+
+		}
 		
 	}
 	

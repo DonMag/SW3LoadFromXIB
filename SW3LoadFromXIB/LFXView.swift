@@ -8,20 +8,18 @@
 
 import UIKit
 
+@IBDesignable
+
 class LFXView: UIView {
 
 	@IBOutlet weak var theLabel: UILabel!
-	
-	
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 	@IBOutlet weak var view : UIView!
+	
+	@IBInspectable var theText: String = "This is the XIB View" {
+		didSet {
+			self.theLabel.text = theText
+		}
+	}
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -37,6 +35,8 @@ class LFXView: UIView {
 		view = loadViewFromXib()
 		view.frame = bounds
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		view.layer.cornerRadius = 24.0
+		view.layer.masksToBounds = true
 		addSubview(view)
 		sendSubview(toBack: view)
 	}
@@ -51,8 +51,5 @@ class LFXView: UIView {
 			return UIView()
 		}
 	}
-	
-	public func lfxSetLabelText(theString: String) -> Void {
-		self.theLabel.text = theString
-	}
+
 }
